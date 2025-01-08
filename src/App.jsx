@@ -1,20 +1,36 @@
-import React from 'react';
-import { ConfigProvider, Button } from 'antd';
+import {Route, Routes, BrowserRouter as Router} from "react-router"
+import publicRoutes from './routes/Routes';
+import MainLayout from './layout/MainLayout';
+import { Fragment } from "react";
 
 const App = () => {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: '#52c41a', // Màu xanh lá cây
-        },
-      }}
-    >
-      <div style={{ textAlign: 'center', marginTop: '50px' }}>
-        <h1>Tùy chỉnh Theme với Ant Design</h1>
-        <Button type="primary">Nút Primary</Button>
-      </div>
-    </ConfigProvider>
+    <Router>
+        <Routes>
+            {
+                publicRoutes.map((item,index) => {
+                    let Layout = MainLayout;
+                    if (item.layout) {
+                        Layout = item.layout;
+                    } else if (item.layout === null) {
+                        Layout = Fragment;
+                    }
+                    const Page = item.conponent;
+                    return (
+                        <Route
+                            key={index}
+                            path={item.path}
+                            element={
+                                <Layout>
+                                    <Page/>
+                                </Layout>
+                            }
+                        />
+                    )
+                })
+            }
+        </Routes>
+    </Router>
   );
 };
 
