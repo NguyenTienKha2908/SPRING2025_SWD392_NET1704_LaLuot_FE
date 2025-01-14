@@ -5,10 +5,12 @@ import Image from "../../components/image/Image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 
 const { Title } = Typography;
 
 export default function Login() {
+  const {t} = useTranslation();
   const nav = useNavigate();
   const onFinish = (values) => {
     const hardcodedEmail = "test@example.com";
@@ -108,7 +110,7 @@ export default function Login() {
           />
         </div>
         <Title level={3} className="text-center mb-2">
-          Welcome Back
+          {t('welcome')}
         </Title>
         <Form
           name="loginForm"

@@ -6,7 +6,7 @@ const { Sider, Content } = Layout;
 export default function MainLayout({ children }) {
     return (
         <Layout className="w-full h-screen">
-            <Sider width="25%">
+            <Sider width="20%">
                 <Sidebar />
             </Sider>
             <Layout>
