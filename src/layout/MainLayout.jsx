@@ -5,7 +5,7 @@ const { Sider, Content } = Layout;
 /* eslint-disable react/prop-types */
 export default function MainLayout({ children }) {
     return (
-        <Layout style={{width:"100%", height:"100%"}}>
+        <Layout className="w-full h-screen">
             <Sider width="25%">
                 <Sidebar />
             </Sider>

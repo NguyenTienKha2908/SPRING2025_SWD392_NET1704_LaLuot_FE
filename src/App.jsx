@@ -1,7 +1,7 @@
 import {Route, Routes, BrowserRouter as Router} from "react-router"
 import publicRoutes from './routes/Routes';
-import MainLayout from './layout/MainLayout';
 import { Fragment } from "react";
+import WelcomeLayout from "./layout/WelcomeLayout";
 
 const App = () => {
   return (
@@ -9,7 +9,7 @@ const App = () => {
         <Routes>
             {
                 publicRoutes.map((item,index) => {
-                    let Layout = MainLayout;
+                    let Layout = WelcomeLayout;
                     if (item.layout) {
                         Layout = item.layout;
                     } else if (item.layout === null) {
