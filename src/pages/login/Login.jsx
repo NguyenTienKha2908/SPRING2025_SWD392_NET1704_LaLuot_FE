@@ -145,7 +145,7 @@ export default function Login() {
             </div>
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="w-full">
+            <Button htmlType="submit" className="w-full border-none text-primary-light bg-primary-orange hover:bg-primary-orange-700 hover:text-primary-light hover:border-none">
               Log In
             </Button>
           </Form.Item>
@@ -157,7 +157,7 @@ export default function Login() {
 
         <div className="text-center">
           <Typography.Text>
-            Don't have an account? <Typography.Link onClick={() => nav('/signup')}>Sign Up</Typography.Link>
+            Don&apos;t have an account? <Typography.Link onClick={() => nav('/signup')}>Sign Up</Typography.Link>
           </Typography.Text>
         </div>
       </Card>
