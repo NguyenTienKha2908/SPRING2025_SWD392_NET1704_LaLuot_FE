@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import  { useEffect } from "react";
 import { Button, Form, Input, Typography, Card } from "antd";
 import Image from "../../components/image/Image";

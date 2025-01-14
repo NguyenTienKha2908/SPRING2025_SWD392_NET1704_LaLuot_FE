@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import React, { useEffect } from 'react';
 import { Button, Form, Input, Typography, Card } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
@@ -12,7 +13,7 @@ export default function SignUp() {
     const userObject = jwtDecode(response.credential);
     toast.success(`Welcome ${userObject.name}!`, {
       position: 'top-right',
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
