@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 import { Button, Form, Input, Typography, Card } from 'antd';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router';
 
 const { Title } = Typography;
 
 export default function SignUp() {
+  const nav = useNavigate();
   const handleGoogleSignUp = (response) => {
     const userObject = jwtDecode(response.credential);
     toast.success(`Welcome ${userObject.name}!`, {
@@ -47,22 +49,23 @@ export default function SignUp() {
     };
   }, []);
 
-  const onFinish = (values) => {
+  const onFinish = () => {
     toast.success('Sign Up successful!', {
       position: 'top-right',
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       theme: 'light',
+      onClose: () => nav('/')
     });
   };
 
   const onFinishFailed = (errorInfo) => {
-    toast.error('Please check your input fields!', {
+    toast.error(errorInfo.errorFields[0].errors[0], {
       position: 'top-right',
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -72,17 +75,7 @@ export default function SignUp() {
   };
 
   return (
-    <div
-      className="flex items-center justify-center min-h-screen bg-primary-light"
-      style={{ padding: '20px' }}
-    >
-         <a
-        href="/home"
-        className="absolute top-5 left-5 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 shadow-md transition"
-      >
-        ← Back to Home
-      </a>
-
+    <div className="flex items-center justify-center min-h-screen bg-primary-light p-[20px]">         
       <ToastContainer />
       <Card
         className="w-full max-w-md"
@@ -153,7 +146,7 @@ export default function SignUp() {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="w-full">
+            <Button type="primary" htmlType="submit" className="w-full bg-primary-orange hover:bg-primary-orange">
               Sign Up
             </Button>
           </Form.Item>
@@ -165,7 +158,7 @@ export default function SignUp() {
 
         <div className="text-center">
           <Typography.Text>
-            Already have an account? <a href="/">Log In</a>
+            Already have an account? <Typography.Link onClick={() => nav('/')}>Log in</Typography.Link>
           </Typography.Text>
         </div>
       </Card>

@@ -1,33 +1,33 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { Button, Form, Input, Typography, Card } from "antd";
 import Image from "../../components/image/Image";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router";
 
 const { Title } = Typography;
 
 export default function Login() {
+  const nav = useNavigate();
   const onFinish = (values) => {
     const hardcodedEmail = "test@example.com";
     const hardcodedPassword = "password123";
 
-    if (
-      values.email === hardcodedEmail &&
-      values.password === hardcodedPassword
-    ) {
+    if ( values.email === hardcodedEmail && values.password === hardcodedPassword) {
       toast.success("Login successful!", {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         theme: "light",
-      });
+        onClose: () => nav('/home')
+      });      
     } else {
-      toast.error("Invalid email or password.", {
+      toast.error("email or password is not correct!", {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 1000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -38,9 +38,10 @@ export default function Login() {
   };
 
   const onFinishFailed = (errorInfo) => {
-    toast.error("Please check your input fields!", {
+    console.log(errorInfo);    
+    toast.error(errorInfo.errorFields[0].errors[0], {
       position: "top-right",
-      autoClose: 3000,
+      autoClose: 1000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -90,25 +91,12 @@ export default function Login() {
   }, []);
 
   return (
-    <div
-      className="relative flex items-center justify-center min-h-screen bg-primary-light"
-      style={{ padding: "20px" }}
-    >
-     
-    
-      <a
-        href="/home"
-        className="absolute top-5 left-5 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 shadow-md transition"
-      >
-        ← Back to Home
-      </a>
-
+    <div className="relative flex items-center justify-center min-h-screen bg-primary-light p-[20px]">      
       <ToastContainer />
       <Card
-        className="w-full max-w-md"
+        className="w-full max-w-md border-r-[10px]"
         style={{
-          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-          borderRadius: "10px",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",          
         }}
       >
         <div className="flex justify-center mb-2">
@@ -169,7 +157,7 @@ export default function Login() {
 
         <div className="text-center">
           <Typography.Text>
-            Don't have an account? <a href="/signup">Sign Up</a>
+            Don't have an account? <Typography.Link onClick={() => nav('/signup')}>Sign Up</Typography.Link>
           </Typography.Text>
         </div>
       </Card>
